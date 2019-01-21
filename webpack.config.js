@@ -6,10 +6,11 @@ module.exports = {
     output: {
     	path: path.resolve(__dirname, 'www/js'),
 	    filename: 'bundle.js',
-	    publicPath: "/build/"
+	    publicPath: "/"
     },
 	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
+		historyApiFallback: true,
+		// contentBase: path.join(__dirname, 'dist'),
 	},
     mode: "development",
     watch: true,

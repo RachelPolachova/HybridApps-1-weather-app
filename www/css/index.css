@@ -1,1 +1,40 @@
+* {
+	font-family: 'Roboto', sans-serif;
+	background-color: antiquewhite;
+	color: #303030;
+}
 
+h1,h2,h3,h4,h5 {
+	color: #FF6F69;
+}
+
+.container {
+	display: flex;
+}
+
+.item {
+	flex-grow: 1;
+}
+
+.navigation {
+	margin: 0px;
+	margin-bottom: 15px;
+	padding: 15px;
+}
+
+.navigation, .navigation > a {
+	background-color: #303030;
+	height: 35px;
+	color: antiquewhite;
+}
+
+a, a:active, a:visited {
+	text-decoration-style: -moz-none;
+	color: antiquewhite;
+}
+
+.get-weather-btn {
+	background-color: #FF6F69;
+	color: #303030;
+	padding: 10px;
+}
