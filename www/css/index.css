@@ -38,3 +38,9 @@ a, a:active, a:visited {
 	color: #303030;
 	padding: 10px;
 }
+
+button {
+	padding: 10px;
+	background-color: #FF6F69;
+	color: antiquewhite;
+}

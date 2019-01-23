@@ -9,25 +9,32 @@ class Home extends React.Component {
 
 
 	state = {
-		destination: "weather",
+		city: null,
 		shouldOpenList: false,
 		cities: data.cities
 	}
 
 	updateCity = (value) => {
 		this.setState({
-			destination: "/weather/" + value
+			city: value
 		});
 		console.log(value)
 	};
+
+	handleClick = (e) => {
+		e.preventDefault;
+		this.props.showCurrentCity(true)
+		this.props.getCurrentCity(this.state.city)
+	}
+
 
 	render() {
 		return(
 			<MuiThemeProvider>
 				<div>
 					<h3>Insert city</h3>
-					<div>
-						<div>
+					<div className="container">
+						<div className="item">
 							<AutoComplete
 								floatingLabelText="City"
 								filter={AutoComplete.fuzzyFilter}
@@ -36,8 +43,8 @@ class Home extends React.Component {
 								onUpdateInput={this.updateCity}
 							/>
 						</div>
-						<div>
-							<NavLink to={this.state.destination.toString()}><div className="get-weather-btn">Get Weather</div></NavLink>
+						<div className="item">
+							<button onClick={this.handleClick}>Search</button>
 						</div>
 					</div>
 

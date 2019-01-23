@@ -1,10 +1,16 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = (props) => {
+
+	function handleClick (e) {
+		e.preventDefault();
+		props.showCurrentCity(false);
+	}
+
 	return(
 		<div>
-			<NavLink to="/index.html">Back</NavLink>
+			<button onClick={handleClick}>back.</button>
 		</div>
 	);
 }
