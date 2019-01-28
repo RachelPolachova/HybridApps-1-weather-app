@@ -7,14 +7,15 @@ class Weather extends React.Component {
 		temperatures: [],
 		dates: [],
 		city: this.props.city,
-		hasData: false
+		hasData: false,
+		isFavourite: false
 	};
 
 	getWeather = async () => {
-		console.log("get Weather called!");
+		// console.log("get Weather called!");
 		const API_KEY = "321e4787765c65bde09141efd2385274";
 		const city = this.state.city;
-		console.log("city in weather: " + city);
+		// console.log("city in weather: " + city);
 		const api_call = await fetch('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid='+API_KEY+'&units=metric');
 		const data = await api_call.json()
 
@@ -43,32 +44,46 @@ class Weather extends React.Component {
 			})
 		}
 
-		console.log("temp from tempArray: " + tempArray);
-		console.log("temp from state: " + this.state.temperatures);
+		// console.log("temp from tempArray: " + tempArray);
+		// console.log("temp from state: " + this.state.temperatures);
 
 	}
 
 	componentDidMount() {
 
-		console.log( "state city: " + this.state.city );
+		// console.log( "state city: " + this.state.city );
 		if (this.state.city != null) {
 			this.getWeather();
 		}
 	};
+
+	makeFavourite = (e) => {
+		if (this.state.isFavourite) {
+			this.setState({
+				isFavourite: false
+			})
+		} else {
+			this.setState({
+				isFavourite: true
+			})
+		}
+		this.props.addToFavourite(this.state.city)
+		console.log( "State set to: " + this.state.isFavourite );
+	}
 
 
 	render() {
 
 		let temps;
 
-		console.log("data: " + this.state.data)
+		// console.log("data: " + this.state.data)
 		if (this.state.temperatures) {
 			temps = this.state.temperatures.map(temp => {
 				return <p>{temp}</p>
 			})
 
 		} else {
-			console.log("empy temps.")
+			// console.log("empy temps.")
 		}
 
 		let dates;
@@ -84,7 +99,10 @@ class Weather extends React.Component {
 					<h3>Weather.</h3>
 					<h4>
 						{ this.state.city ? (
-						<p>City: {this.state.city}</p>
+						<div>
+							<p>City: {this.state.city}</p>
+							<button onClick={this.makeFavourite}>Make favourite.</button>
+						</div>
 					) : (
 						<p>Please, insert city.</p>
 					)}

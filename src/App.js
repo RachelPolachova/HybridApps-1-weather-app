@@ -7,7 +7,8 @@ class App extends React.Component {
 
 	state = {
 		viewCurrentCity: false,
-		city: null
+		city: null,
+		favouriteCities: []
 	}
 
 	showCurrentCity = (bool => {
@@ -22,6 +23,15 @@ class App extends React.Component {
 		})
 	})
 
+	addToFavourite = (favouriteCity => {
+		var newArr = this.state.favouriteCities
+		newArr.push(favouriteCity)
+		this.setState({
+			favouriteCities: newArr
+		})
+		console.log( "added favourite city: " + this.state.favouriteCities );
+	})
+
 	render() {
 		return (
 				<div>
@@ -29,12 +39,12 @@ class App extends React.Component {
 						<div>
 							<Navigation showCurrentCity={this.showCurrentCity}/>
 							<h1>weather!</h1>
-							<Weather city={this.state.city}/>
+							<Weather city={this.state.city} addToFavourite={this.addToFavourite}/>
 						</div>
 					) : (
 						<div>
 							<h1>home</h1>
-							<Home showCurrentCity={this.showCurrentCity} getCurrentCity={this.getCurrentCity}/>
+							<Home showCurrentCity={this.showCurrentCity} getCurrentCity={this.getCurrentCity} favouriteCities={this.state.favouriteCities}/>
 						</div>
 					) }
 				</div>
