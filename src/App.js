@@ -2,13 +2,15 @@ import React from 'react';
 import Weather from './components/Weather';
 import Navigation from './components/Navigation';
 import Home from "./components/Home";
+// import ls from 'local-storage';
 
 class App extends React.Component {
 
+	favouriteCities = []
+
 	state = {
-		viewCurrentCity: false,
-		city: null,
-		favouriteCities: []
+		viewCurrentCity: true,
+		city: null
 	}
 
 	showCurrentCity = (bool => {
@@ -24,13 +26,19 @@ class App extends React.Component {
 	})
 
 	addToFavourite = (favouriteCity => {
-		var newArr = this.state.favouriteCities
-		newArr.push(favouriteCity)
-		this.setState({
-			favouriteCities: newArr
-		})
-		console.log( "added favourite city: " + this.state.favouriteCities );
+		this.favouriteCities.push(favouriteCity)
+		console.log( "fav cities:" + this.favouriteCities );
+		localStorage.setItem('test', JSON.stringify(this.favouriteCities))
+		console.log( "Get item: " + JSON.parse(localStorage.getItem('test')) );
 	})
+
+	componentDidMount() {
+		console.log( JSON.parse(localStorage.getItem('test')) );
+		this.favouriteCities = JSON.parse(localStorage.getItem('test'));
+		this.setState({
+			viewCurrentCity: false
+		})
+	}
 
 	render() {
 		return (
@@ -44,7 +52,7 @@ class App extends React.Component {
 					) : (
 						<div>
 							<h1>home</h1>
-							<Home showCurrentCity={this.showCurrentCity} getCurrentCity={this.getCurrentCity} favouriteCities={this.state.favouriteCities}/>
+							<Home showCurrentCity={this.showCurrentCity} getCurrentCity={this.getCurrentCity} favouriteCities={this.favouriteCities}/>
 						</div>
 					) }
 				</div>

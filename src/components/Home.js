@@ -4,7 +4,6 @@ import AutoComplete from 'material-ui/AutoComplete';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import data from './data';
 
-
 class Home extends React.Component {
 
 
@@ -55,10 +54,9 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log( this.state.favouriteCities );
+		// console.log( this.state.favouriteCities );
 		this.getFavouriteWeather()
 	}
-
 
 	render() {
 

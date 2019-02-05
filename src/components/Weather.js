@@ -44,14 +44,10 @@ class Weather extends React.Component {
 			})
 		}
 
-		// console.log("temp from tempArray: " + tempArray);
-		// console.log("temp from state: " + this.state.temperatures);
-
 	}
 
 	componentDidMount() {
 
-		// console.log( "state city: " + this.state.city );
 		if (this.state.city != null) {
 			this.getWeather();
 		}
@@ -76,14 +72,11 @@ class Weather extends React.Component {
 
 		let temps;
 
-		// console.log("data: " + this.state.data)
 		if (this.state.temperatures) {
 			temps = this.state.temperatures.map(temp => {
 				return <p>{temp}</p>
 			})
 
-		} else {
-			// console.log("empy temps.")
 		}
 
 		let dates;
